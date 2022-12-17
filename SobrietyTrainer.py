@@ -23,15 +23,14 @@ class SobrietyTrainer:
         self.graph_accuracy_by_epoch()
 
     def train_epoch(self, epoch: int):
-        self.scheduler.step()
         self.model.train()
         for inputs, labels in self.train_loader:
-            inputs, labels = inputs.to(self.device), labels.to(self.device)
             self.optimizer.zero_grad()
             outputs = self.model(inputs)
             loss = self.criterion(outputs, labels)
             loss.backward()
             self.optimizer.step()
+        self.scheduler.step()
 
     def test_epoch(self, epoch: int):
         self.model.eval()

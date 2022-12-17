@@ -6,8 +6,8 @@ class SobrietyModel(nn.Module):
     def __init__(self, num_classes: int):
         super(SobrietyModel, self).__init__()
         # load the pretrained model
-        # TODO: change the model to one that recognizes emotion
-        self.model = torchvision.models.resnet18(pretrained=True)
+        # TODO: check if model is fine; there is resnet152
+        self.model = torchvision.models.resnet50(weights='ResNet50_Weights.IMAGENET1K_V2', progress=True)
 
         # freeze the parameters of the pretrained model
         for param in self.model.parameters():

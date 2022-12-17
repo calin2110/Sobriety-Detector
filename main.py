@@ -1,8 +1,8 @@
 import torch
-import torchvision
 import torch.nn as nn
+from torch.utils.data import DataLoader
 
-
+from SobrietyDataset import SobrietyDataset
 from SobrietyModel import SobrietyModel
 from SobrietyTrainer import SobrietyTrainer
 
@@ -14,17 +14,19 @@ def main():
     # define the batch size
     batch_size = 64
 
+    # define the train dataset
+    train_dataset = SobrietyDataset(root_dir="data/train", csv_file="data/train.csv", expected_size=(224, 224))
+
     # define the train loader
-    # TODO: create the train loaded
-    train_loader = None
-    # train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+
+    # define the validation dataset
+    validation_dataset = SobrietyDataset(root_dir="data/validation", csv_file="data/validation.csv",
+                                         expected_size=(224, 224))
 
     # define the validation loader
-    # TODO: create the validation loader
-    val_loader = None
-    # val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=batch_size, shuffle=True)
+    val_loader = DataLoader(validation_dataset, batch_size=batch_size, shuffle=True)
 
-    # TODO: discuss the number of resulting classes
     sobriety_model = SobrietyModel(
         num_classes=2
     )
