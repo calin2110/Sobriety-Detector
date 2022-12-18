@@ -27,6 +27,12 @@ def main():
     # define the validation loader
     val_loader = DataLoader(validation_dataset, batch_size=batch_size, shuffle=True)
 
+    # define the test dataset
+    test_dataset = SobrietyDataset(root_dir="data/test", csv_file="data/test.csv", expected_size=(224, 224))
+
+    # define the test loader
+    test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=True)
+
     sobriety_model = SobrietyModel(
         num_classes=2
     )
@@ -45,6 +51,7 @@ def main():
         model=sobriety_model,
         train_loader=train_loader,
         val_loader=val_loader,
+        test_loader=test_loader,
         optimizer=optimizer,
         criterion=criterion,
         device=device,
