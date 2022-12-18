@@ -28,7 +28,7 @@ def main():
     val_loader = DataLoader(validation_dataset, batch_size=batch_size, shuffle=True)
 
     # define the test dataset
-    test_dataset = SobrietyDataset(root_dir="data/test", csv_file="data/test.csv", expected_size=(224, 224))
+    test_dataset = SobrietyDataset(root_dir="data/test", csv_file="data/test/test.csv", expected_size=(224, 224))
 
     # define the test loader
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=True)
