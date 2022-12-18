@@ -15,13 +15,13 @@ def main():
     batch_size = 64
 
     # define the train dataset
-    train_dataset = SobrietyDataset(root_dir="data/train", csv_file="data/train.csv", expected_size=(224, 224))
+    train_dataset = SobrietyDataset(root_dir="data/train", csv_file="data/train/train.csv", expected_size=(224, 224))
 
     # define the train loader
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 
     # define the validation dataset
-    validation_dataset = SobrietyDataset(root_dir="data/validation", csv_file="data/validation.csv",
+    validation_dataset = SobrietyDataset(root_dir="data/validation", csv_file="data/validation/validation.csv",
                                          expected_size=(224, 224))
 
     # define the validation loader
