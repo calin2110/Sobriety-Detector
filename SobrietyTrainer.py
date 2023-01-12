@@ -29,7 +29,11 @@ class SobrietyTrainer:
 
     def train_epoch(self):
         self.model.train()
+        nr_batches = len(self.train_loader)
+        batch = 0
         for inputs, labels in self.train_loader:
+            batch += 1
+            print(f"Batch {batch}/{nr_batches}", end='\r')
             self.optimizer.zero_grad()
             outputs = self.model(inputs)
             loss = self.criterion(outputs, labels)

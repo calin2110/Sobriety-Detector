@@ -21,12 +21,12 @@ class SobrietyDataset(Dataset):
         if torch.is_tensor(idx):
             idx = idx.tolist()
 
-        img_name = os.path.join(self.root_dir, self.labels.iloc[idx,1])
+        img_name = os.path.join(self.root_dir, self.labels.iloc[idx,0])
         image_pil = Image.open(img_name)
         image_pil = image_pil.resize(self.expected_size)
         image_arr = np.array(image_pil)
         image_tens = torch.from_numpy(image_arr).permute(2, 0, 1).float()
         image_tens = image_tens.div(255)
         # TODO: https://stats.stackexchange.com/questions/384484/how-should-i-standardize-input-when-fine-tuning-a-cnn
-        labels = self.labels.iloc[idx, 2]
+        labels = self.labels.iloc[idx, 1]
         return image_tens, labels
