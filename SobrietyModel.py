@@ -6,7 +6,6 @@ class SobrietyModel(nn.Module):
     def __init__(self, num_classes: int):
         super(SobrietyModel, self).__init__()
         # load the pretrained model
-        # TODO: check if model is fine; there is resnet152
         self.model = torchvision.models.resnet50(weights='ResNet50_Weights.IMAGENET1K_V2', progress=True)
 
         # freeze the parameters of the pretrained model
@@ -14,7 +13,6 @@ class SobrietyModel(nn.Module):
             param.requires_grad = False
 
         num_ftrs = self.model.fc.in_features
-        # TODO: check if this fc is correct
         # replace the final fully connected layer with three new fully connected layers
         self.model.fc = nn.Sequential(
             nn.Linear(num_ftrs, 256),
